@@ -22,7 +22,7 @@ const loginSchema = z.object({
 const signupSchema = z.object({
   nom: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(50),
   prenom: z.string().max(50).optional(),
-  telephone: z.string().min(8, "Numéro de téléphone invalide").max(15).optional(),
+  telephone: z.string().min(10, "Numéro invalide (format: +269 XXX XX XX)").max(20).optional(),
   email: z.string().email("Email invalide"),
   pinCode: z.string().min(4, "Le code PIN doit contenir au moins 4 chiffres").max(6, "Le code PIN ne peut pas dépasser 6 chiffres").regex(/^\d+$/, "Le code PIN doit contenir uniquement des chiffres"),
   role: z.enum(["proprietaire", "caissier"]),
@@ -287,7 +287,7 @@ const Auth = () => {
                   <Input
                     id="signup-telephone"
                     type="tel"
-                    placeholder="+33 6 12 34 56 78"
+                    placeholder="+269 XXX XX XX"
                     value={signupTelephone}
                     onChange={(e) => setSignupTelephone(e.target.value)}
                     className="h-14 text-mobile-base"
