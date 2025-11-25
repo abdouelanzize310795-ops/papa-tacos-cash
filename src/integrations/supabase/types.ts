@@ -21,6 +21,7 @@ export type Database = {
           id: string
           montant: number
           type_charge: string
+          user_id: string | null
         }
         Insert: {
           created_at?: string
@@ -28,6 +29,7 @@ export type Database = {
           id?: string
           montant: number
           type_charge: string
+          user_id?: string | null
         }
         Update: {
           created_at?: string
@@ -35,6 +37,7 @@ export type Database = {
           id?: string
           montant?: number
           type_charge?: string
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -47,6 +50,7 @@ export type Database = {
           id: string
           montant: number
           photo_ticket: string | null
+          user_id: string | null
         }
         Insert: {
           categorie: string
@@ -56,6 +60,7 @@ export type Database = {
           id?: string
           montant: number
           photo_ticket?: string | null
+          user_id?: string | null
         }
         Update: {
           categorie?: string
@@ -65,6 +70,40 @@ export type Database = {
           id?: string
           montant?: number
           photo_ticket?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          id: string
+          nom: string
+          pin_code: string
+          prenom: string | null
+          telephone: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          id: string
+          nom: string
+          pin_code: string
+          prenom?: string | null
+          telephone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          id?: string
+          nom?: string
+          pin_code?: string
+          prenom?: string | null
+          telephone?: string | null
+          updated_at?: string
         }
         Relationships: []
       }
@@ -76,6 +115,7 @@ export type Database = {
           id: string
           mode_paiement: string
           montant: number
+          user_id: string | null
         }
         Insert: {
           created_at?: string
@@ -84,6 +124,7 @@ export type Database = {
           id?: string
           mode_paiement: string
           montant: number
+          user_id?: string | null
         }
         Update: {
           created_at?: string
@@ -92,6 +133,28 @@ export type Database = {
           id?: string
           mode_paiement?: string
           montant?: number
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
         }
         Relationships: []
       }
@@ -100,10 +163,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "proprietaire" | "caissier"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -230,6 +299,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["proprietaire", "caissier"],
+    },
   },
 } as const

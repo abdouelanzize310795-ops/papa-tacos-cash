@@ -9,6 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import logo from "@/assets/papa-tacos-logo.png";
 
 const categories = [
   "Viande",
@@ -25,6 +27,7 @@ const categories = [
 const AjouterDepense = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { user } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [montant, setMontant] = useState("");
   const [categorie, setCategorie] = useState("");
@@ -50,6 +53,7 @@ const AjouterDepense = () => {
         montant: parseFloat(montant),
         categorie,
         fournisseur: fournisseur || null,
+        user_id: user?.id,
       });
 
     setIsLoading(false);
@@ -72,16 +76,17 @@ const AjouterDepense = () => {
   return (
     <div className="min-h-screen bg-gradient-soft">
       <header className="bg-gradient-warm shadow-warm">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center gap-4">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center gap-3">
             <Button asChild variant="ghost" size="icon" className="text-primary-foreground">
               <Link to="/depenses">
                 <ArrowLeft className="h-6 w-6" />
               </Link>
             </Button>
+            <img src={logo} alt="Papa Tacos" className="w-12 h-12 object-contain" />
             <div>
-              <h1 className="text-3xl font-bold text-primary-foreground">Nouvelle Dépense</h1>
-              <p className="text-primary-foreground/90">Enregistrer un achat</p>
+              <h1 className="text-xl md:text-2xl font-bold text-primary-foreground">Nouvelle Dépense</h1>
+              <p className="text-sm text-primary-foreground/90">Enregistrer un achat</p>
             </div>
           </div>
         </div>
