@@ -2,12 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { format, startOfDay, endOfDay, startOfMonth, endOfMonth } from "date-fns";
 import { fr } from "date-fns/locale";
-import { TrendingUp, TrendingDown, DollarSign, Receipt, ShoppingCart, Wallet } from "lucide-react";
+import { TrendingUp, TrendingDown, DollarSign, Receipt, ShoppingCart, Wallet, LogOut, User } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import logo from "@/assets/papa-tacos-logo.png";
 
 const Dashboard = () => {
+  const { user, userRole, signOut } = useAuth();
   const today = new Date();
 
   // Requête pour les recettes du jour
@@ -98,9 +101,27 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gradient-soft">
       <header className="bg-gradient-warm shadow-warm">
-        <div className="container mx-auto px-4 py-6">
-          <h1 className="text-3xl font-bold text-primary-foreground">Papa Tacos</h1>
-          <p className="text-primary-foreground/90">Gestion de Caisse</p>
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <img src={logo} alt="Papa Tacos" className="w-16 h-16 object-contain" />
+              <div>
+                <h1 className="text-2xl md:text-3xl font-bold text-primary-foreground">Papa Tacos</h1>
+                <p className="text-sm text-primary-foreground/90">Gestion de Caisse</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="hidden md:block text-right mr-2">
+                <p className="text-sm text-primary-foreground/90">Connecté</p>
+                <p className="text-xs text-primary-foreground font-medium">
+                  {userRole === "proprietaire" ? "👑 Propriétaire" : "👤 Caissier"}
+                </p>
+              </div>
+              <Button variant="ghost" size="icon" onClick={signOut} className="text-primary-foreground">
+                <LogOut className="h-5 w-5" />
+              </Button>
+            </div>
+          </div>
         </div>
       </header>
 
