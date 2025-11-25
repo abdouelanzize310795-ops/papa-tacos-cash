@@ -194,7 +194,7 @@ const Auth = () => {
             <div className="absolute inset-0 bg-gradient-warm/30 rounded-full blur-2xl -z-10"></div>
           </div>
           <div>
-            <CardTitle className="text-mobile-3xl bg-gradient-warm bg-clip-text text-transparent font-extrabold">Papa Tacos</CardTitle>
+            <CardTitle className="text-mobile-3xl font-extrabold text-primary">Papa Tacos</CardTitle>
             <CardDescription className="text-mobile-base mt-2 font-semibold text-foreground">Gestion de Caisse</CardDescription>
           </div>
         </CardHeader>
