@@ -63,75 +63,76 @@ const AjouterRecette = () => {
 
   return (
     <div className="min-h-screen bg-gradient-soft">
-      <header className="bg-gradient-warm shadow-warm">
-        <div className="container mx-auto px-4 py-4">
+      <header className="bg-gradient-warm shadow-warm sticky top-0 z-50">
+        <div className="px-4 py-4">
           <div className="flex items-center gap-3">
-            <Button asChild variant="ghost" size="icon" className="text-primary-foreground">
+            <Button asChild variant="ghost" size="icon" className="text-primary-foreground min-h-touch active:scale-95 transition-transform">
               <Link to="/recettes">
                 <ArrowLeft className="h-6 w-6" />
               </Link>
             </Button>
             <img src={logo} alt="Papa Tacos" className="w-12 h-12 object-contain" />
             <div>
-              <h1 className="text-xl md:text-2xl font-bold text-primary-foreground">Nouvelle Recette</h1>
-              <p className="text-sm text-primary-foreground/90">Enregistrer un revenu</p>
+              <h1 className="text-mobile-xl font-bold text-primary-foreground">Nouvelle Recette</h1>
+              <p className="text-mobile-sm text-primary-foreground/90">Ajouter un revenu</p>
             </div>
           </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-6 max-w-2xl">
+      <main className="px-4 py-5 max-w-screen-sm mx-auto pb-safe">
         <Card className="border-primary/20 shadow-warm">
           <CardHeader>
-            <CardTitle>Informations de la recette</CardTitle>
-            <CardDescription>Remplissez les détails de la transaction</CardDescription>
+            <CardTitle className="text-mobile-xl">Informations</CardTitle>
+            <CardDescription className="text-mobile-base">Détails de la transaction</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="montant">Montant (F CFA)</Label>
+                <Label htmlFor="montant" className="text-mobile-base">Montant (F CFA)</Label>
                 <Input
                   id="montant"
                   type="number"
                   placeholder="0"
                   value={montant}
                   onChange={(e) => setMontant(e.target.value)}
-                  className="text-2xl font-bold h-16"
+                  className="text-mobile-3xl font-bold h-20 text-center"
                   step="0.01"
                   min="0"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="description">Description</Label>
+                <Label htmlFor="description" className="text-mobile-base">Description</Label>
                 <Input
                   id="description"
                   type="text"
                   placeholder="Ex: Vente tacos, boissons..."
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
+                  className="h-14 text-mobile-base"
                 />
               </div>
 
               <div className="space-y-3">
-                <Label>Mode de paiement</Label>
+                <Label className="text-mobile-base">Mode de paiement</Label>
                 <RadioGroup value={modePaiement} onValueChange={setModePaiement}>
-                  <div className="flex items-center space-x-2 border rounded-lg p-4">
-                    <RadioGroupItem value="Espèces" id="especes" />
-                    <Label htmlFor="especes" className="flex-1 cursor-pointer">
-                      Espèces
+                  <div className="flex items-center space-x-3 border-2 rounded-xl p-4 active:scale-[0.98] transition-transform">
+                    <RadioGroupItem value="Espèces" id="especes" className="min-h-touch min-w-[24px]" />
+                    <Label htmlFor="especes" className="flex-1 cursor-pointer text-mobile-base">
+                      💵 Espèces
                     </Label>
                   </div>
-                  <div className="flex items-center space-x-2 border rounded-lg p-4">
-                    <RadioGroupItem value="Mobile Money" id="mobile" />
-                    <Label htmlFor="mobile" className="flex-1 cursor-pointer">
-                      Mobile Money
+                  <div className="flex items-center space-x-3 border-2 rounded-xl p-4 active:scale-[0.98] transition-transform">
+                    <RadioGroupItem value="Mobile Money" id="mobile" className="min-h-touch min-w-[24px]" />
+                    <Label htmlFor="mobile" className="flex-1 cursor-pointer text-mobile-base">
+                      📱 Mobile Money
                     </Label>
                   </div>
-                  <div className="flex items-center space-x-2 border rounded-lg p-4">
-                    <RadioGroupItem value="CB" id="cb" />
-                    <Label htmlFor="cb" className="flex-1 cursor-pointer">
-                      Carte Bancaire
+                  <div className="flex items-center space-x-3 border-2 rounded-xl p-4 active:scale-[0.98] transition-transform">
+                    <RadioGroupItem value="CB" id="cb" className="min-h-touch min-w-[24px]" />
+                    <Label htmlFor="cb" className="flex-1 cursor-pointer text-mobile-base">
+                      💳 Carte Bancaire
                     </Label>
                   </div>
                 </RadioGroup>
@@ -142,11 +143,15 @@ const AjouterRecette = () => {
                   type="button"
                   variant="outline"
                   onClick={() => navigate("/recettes")}
-                  className="flex-1"
+                  className="flex-1 h-14 text-mobile-base active:scale-[0.98] transition-transform"
                 >
                   Annuler
                 </Button>
-                <Button type="submit" disabled={isLoading} className="flex-1 shadow-warm">
+                <Button 
+                  type="submit" 
+                  disabled={isLoading} 
+                  className="flex-1 h-14 text-mobile-base shadow-warm active:scale-[0.98] transition-transform"
+                >
                   {isLoading ? "Enregistrement..." : "Enregistrer"}
                 </Button>
               </div>

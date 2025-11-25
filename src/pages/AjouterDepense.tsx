@@ -75,54 +75,54 @@ const AjouterDepense = () => {
 
   return (
     <div className="min-h-screen bg-gradient-soft">
-      <header className="bg-gradient-warm shadow-warm">
-        <div className="container mx-auto px-4 py-4">
+      <header className="bg-gradient-warm shadow-warm sticky top-0 z-50">
+        <div className="px-4 py-4">
           <div className="flex items-center gap-3">
-            <Button asChild variant="ghost" size="icon" className="text-primary-foreground">
+            <Button asChild variant="ghost" size="icon" className="text-primary-foreground min-h-touch active:scale-95 transition-transform">
               <Link to="/depenses">
                 <ArrowLeft className="h-6 w-6" />
               </Link>
             </Button>
             <img src={logo} alt="Papa Tacos" className="w-12 h-12 object-contain" />
             <div>
-              <h1 className="text-xl md:text-2xl font-bold text-primary-foreground">Nouvelle Dépense</h1>
-              <p className="text-sm text-primary-foreground/90">Enregistrer un achat</p>
+              <h1 className="text-mobile-xl font-bold text-primary-foreground">Nouvelle Dépense</h1>
+              <p className="text-mobile-sm text-primary-foreground/90">Enregistrer un achat</p>
             </div>
           </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-6 max-w-2xl">
+      <main className="px-4 py-5 max-w-screen-sm mx-auto pb-safe">
         <Card className="border-primary/20 shadow-warm">
           <CardHeader>
-            <CardTitle>Informations de la dépense</CardTitle>
-            <CardDescription>Remplissez les détails de l'achat</CardDescription>
+            <CardTitle className="text-mobile-xl">Informations</CardTitle>
+            <CardDescription className="text-mobile-base">Détails de l'achat</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="montant">Montant (F CFA) *</Label>
+                <Label htmlFor="montant" className="text-mobile-base">Montant (F CFA) *</Label>
                 <Input
                   id="montant"
                   type="number"
                   placeholder="0"
                   value={montant}
                   onChange={(e) => setMontant(e.target.value)}
-                  className="text-2xl font-bold h-16"
+                  className="text-mobile-3xl font-bold h-20 text-center"
                   step="0.01"
                   min="0"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="categorie">Catégorie *</Label>
+                <Label htmlFor="categorie" className="text-mobile-base">Catégorie *</Label>
                 <Select value={categorie} onValueChange={setCategorie}>
-                  <SelectTrigger id="categorie">
-                    <SelectValue placeholder="Sélectionner une catégorie" />
+                  <SelectTrigger id="categorie" className="h-14 text-mobile-base">
+                    <SelectValue placeholder="Sélectionner" />
                   </SelectTrigger>
                   <SelectContent>
                     {categories.map((cat) => (
-                      <SelectItem key={cat} value={cat}>
+                      <SelectItem key={cat} value={cat} className="text-mobile-base py-3">
                         {cat}
                       </SelectItem>
                     ))}
@@ -131,13 +131,14 @@ const AjouterDepense = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="fournisseur">Fournisseur (optionnel)</Label>
+                <Label htmlFor="fournisseur" className="text-mobile-base">Fournisseur (optionnel)</Label>
                 <Input
                   id="fournisseur"
                   type="text"
                   placeholder="Nom du fournisseur"
                   value={fournisseur}
                   onChange={(e) => setFournisseur(e.target.value)}
+                  className="h-14 text-mobile-base"
                 />
               </div>
 
@@ -146,11 +147,16 @@ const AjouterDepense = () => {
                   type="button"
                   variant="outline"
                   onClick={() => navigate("/depenses")}
-                  className="flex-1"
+                  className="flex-1 h-14 text-mobile-base active:scale-[0.98] transition-transform"
                 >
                   Annuler
                 </Button>
-                <Button type="submit" disabled={isLoading} variant="secondary" className="flex-1 shadow-warm">
+                <Button 
+                  type="submit" 
+                  disabled={isLoading} 
+                  variant="secondary" 
+                  className="flex-1 h-14 text-mobile-base shadow-card active:scale-[0.98] transition-transform"
+                >
                   {isLoading ? "Enregistrement..." : "Enregistrer"}
                 </Button>
               </div>

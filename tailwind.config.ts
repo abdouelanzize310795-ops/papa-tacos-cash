@@ -68,6 +68,18 @@ export default {
       },
       boxShadow: {
         'warm': 'var(--shadow-warm)',
+        'card': 'var(--shadow-card)',
+      },
+      minHeight: {
+        'touch': '44px',
+      },
+      fontSize: {
+        'mobile-sm': ['14px', '20px'],
+        'mobile-base': ['16px', '24px'],
+        'mobile-lg': ['18px', '28px'],
+        'mobile-xl': ['20px', '28px'],
+        'mobile-2xl': ['24px', '32px'],
+        'mobile-3xl': ['30px', '36px'],
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -199,36 +199,39 @@ const Auth = () => {
   return (
     <div className="min-h-screen bg-gradient-soft flex items-center justify-center p-4">
       <Card className="w-full max-w-md border-primary/20 shadow-warm">
-        <CardHeader className="text-center">
-          <div className="mx-auto mb-4 w-32 h-32">
-            <img src={logo} alt="Papa Tacos Logo" className="w-full h-full object-contain" />
+        <CardHeader className="text-center space-y-4 pb-6">
+          <div className="mx-auto w-28 h-28">
+            <img src={logo} alt="Papa Tacos Logo" className="w-full h-full object-contain animate-fade-in" />
           </div>
-          <CardTitle className="text-2xl">Papa Tacos</CardTitle>
-          <CardDescription>Connexion à votre espace</CardDescription>
+          <div>
+            <CardTitle className="text-mobile-3xl">Papa Tacos</CardTitle>
+            <CardDescription className="text-mobile-base mt-2">Gestion de Caisse</CardDescription>
+          </div>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="login" className="w-full">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="login">Connexion</TabsTrigger>
-              <TabsTrigger value="signup">Inscription</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-2 h-12">
+              <TabsTrigger value="login" className="text-mobile-base">Connexion</TabsTrigger>
+              <TabsTrigger value="signup" className="text-mobile-base">Inscription</TabsTrigger>
             </TabsList>
 
-            <TabsContent value="login">
-              <form onSubmit={handleLogin} className="space-y-4">
+            <TabsContent value="login" className="space-y-5 mt-5">
+              <form onSubmit={handleLogin} className="space-y-5">
                 <div className="space-y-2">
-                  <Label htmlFor="login-email">Email</Label>
+                  <Label htmlFor="login-email" className="text-mobile-base">Email</Label>
                   <Input
                     id="login-email"
                     type="email"
                     placeholder="email@exemple.com"
                     value={loginEmail}
                     onChange={(e) => setLoginEmail(e.target.value)}
+                    className="h-14 text-mobile-base"
                     required
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="login-pin">Code PIN</Label>
+                  <Label htmlFor="login-pin" className="text-mobile-base">Code PIN</Label>
                   <div className="relative">
                     <Input
                       id="login-pin"
@@ -237,76 +240,85 @@ const Auth = () => {
                       value={loginPin}
                       onChange={(e) => setLoginPin(e.target.value)}
                       maxLength={6}
+                      className="h-14 text-mobile-xl text-center tracking-widest pr-12"
                       required
                     />
                     <Button
                       type="button"
                       variant="ghost"
                       size="icon"
-                      className="absolute right-0 top-0 h-full"
+                      className="absolute right-0 top-0 h-full min-h-touch"
                       onClick={() => setShowLoginPin(!showLoginPin)}
                     >
-                      {showLoginPin ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                      {showLoginPin ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                     </Button>
                   </div>
                 </div>
 
-                <Button type="submit" className="w-full shadow-warm" disabled={isLoggingIn}>
+                <Button 
+                  type="submit" 
+                  className="w-full h-14 text-mobile-lg shadow-warm active:scale-[0.98] transition-transform" 
+                  disabled={isLoggingIn}
+                >
                   {isLoggingIn ? "Connexion..." : "Se connecter"}
                 </Button>
               </form>
             </TabsContent>
 
-            <TabsContent value="signup">
-              <form onSubmit={handleSignup} className="space-y-4">
+            <TabsContent value="signup" className="space-y-4 mt-5">
+              <form onSubmit={handleSignup} className="space-y-4">{/* ... */}
                 <div className="space-y-2">
-                  <Label htmlFor="signup-nom">Nom *</Label>
+                  <Label htmlFor="signup-nom" className="text-mobile-base">Nom *</Label>
                   <Input
                     id="signup-nom"
                     type="text"
                     placeholder="Nom"
                     value={signupNom}
                     onChange={(e) => setSignupNom(e.target.value)}
+                    className="h-14 text-mobile-base"
                     required
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="signup-prenom">Prénom</Label>
+                  <Label htmlFor="signup-prenom" className="text-mobile-base">Prénom</Label>
                   <Input
                     id="signup-prenom"
                     type="text"
                     placeholder="Prénom"
                     value={signupPrenom}
                     onChange={(e) => setSignupPrenom(e.target.value)}
+                    className="h-14 text-mobile-base"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="signup-telephone">Téléphone</Label>
+                  <Label htmlFor="signup-telephone" className="text-mobile-base">Téléphone</Label>
                   <Input
                     id="signup-telephone"
                     type="tel"
                     placeholder="+33 6 12 34 56 78"
                     value={signupTelephone}
                     onChange={(e) => setSignupTelephone(e.target.value)}
+                    className="h-14 text-mobile-base"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="signup-email">Email *</Label>
+                  <Label htmlFor="signup-email" className="text-mobile-base">Email *</Label>
                   <Input
                     id="signup-email"
                     type="email"
                     placeholder="email@exemple.com"
                     value={signupEmail}
                     onChange={(e) => setSignupEmail(e.target.value)}
+                    className="h-14 text-mobile-base"
                     required
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="signup-pin">Code PIN (4-6 chiffres) *</Label>
+                  <Label htmlFor="signup-pin" className="text-mobile-base">Code PIN (4-6 chiffres) *</Label>
                   <div className="relative">
                     <Input
                       id="signup-pin"
@@ -315,39 +327,46 @@ const Auth = () => {
                       value={signupPin}
                       onChange={(e) => setSignupPin(e.target.value.replace(/\D/g, ""))}
                       maxLength={6}
+                      className="h-14 text-mobile-xl text-center tracking-widest pr-12"
                       required
                     />
                     <Button
                       type="button"
                       variant="ghost"
                       size="icon"
-                      className="absolute right-0 top-0 h-full"
+                      className="absolute right-0 top-0 h-full min-h-touch"
                       onClick={() => setShowSignupPin(!showSignupPin)}
                     >
-                      {showSignupPin ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                      {showSignupPin ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                     </Button>
                   </div>
                 </div>
 
                 <div className="space-y-3">
-                  <Label>Rôle *</Label>
+                  <Label className="text-mobile-base">Rôle *</Label>
                   <RadioGroup value={signupRole} onValueChange={(value) => setSignupRole(value as "proprietaire" | "caissier")}>
-                    <div className="flex items-center space-x-2 border rounded-lg p-4">
-                      <RadioGroupItem value="caissier" id="caissier" />
-                      <Label htmlFor="caissier" className="flex-1 cursor-pointer">
-                        Caissier - Saisie des transactions
+                    <div className="flex items-center space-x-3 border-2 rounded-xl p-4 active:scale-[0.98] transition-transform">
+                      <RadioGroupItem value="caissier" id="caissier" className="min-h-touch min-w-[24px]" />
+                      <Label htmlFor="caissier" className="flex-1 cursor-pointer text-mobile-base leading-snug">
+                        👤 Caissier<br />
+                        <span className="text-mobile-sm text-muted-foreground">Saisie des transactions</span>
                       </Label>
                     </div>
-                    <div className="flex items-center space-x-2 border rounded-lg p-4 bg-accent/30">
-                      <RadioGroupItem value="proprietaire" id="proprietaire" />
-                      <Label htmlFor="proprietaire" className="flex-1 cursor-pointer">
-                        Propriétaire - Accès complet
+                    <div className="flex items-center space-x-3 border-2 rounded-xl p-4 bg-accent/20 active:scale-[0.98] transition-transform">
+                      <RadioGroupItem value="proprietaire" id="proprietaire" className="min-h-touch min-w-[24px]" />
+                      <Label htmlFor="proprietaire" className="flex-1 cursor-pointer text-mobile-base leading-snug">
+                        👑 Propriétaire<br />
+                        <span className="text-mobile-sm text-muted-foreground">Accès complet</span>
                       </Label>
                     </div>
                   </RadioGroup>
                 </div>
 
-                <Button type="submit" className="w-full shadow-warm" disabled={isSigningUp}>
+                <Button 
+                  type="submit" 
+                  className="w-full h-14 text-mobile-lg shadow-warm active:scale-[0.98] transition-transform" 
+                  disabled={isSigningUp}
+                >
                   {isSigningUp ? "Inscription..." : "Créer mon compte"}
                 </Button>
               </form>

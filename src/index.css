@@ -39,7 +39,7 @@ All colors MUST be HSL.
     --input: 42 30% 88%;
     --ring: 28 95% 55%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 20 10% 10%;
@@ -53,6 +53,7 @@ All colors MUST be HSL.
     --gradient-warm: linear-gradient(135deg, hsl(28 95% 55%), hsl(0 85% 55%));
     --gradient-soft: linear-gradient(180deg, hsl(42 100% 98%), hsl(42 30% 94%));
     --shadow-warm: 0 10px 40px -10px hsl(28 95% 55% / 0.25);
+    --shadow-card: 0 4px 20px -4px hsl(28 95% 55% / 0.15);
   }
 
   .dark {
@@ -99,15 +100,31 @@ All colors MUST be HSL.
     --gradient-warm: linear-gradient(135deg, hsl(28 95% 55%), hsl(0 85% 55%));
     --gradient-soft: linear-gradient(180deg, hsl(20 15% 8%), hsl(20 15% 12%));
     --shadow-warm: 0 10px 40px -10px hsl(28 95% 55% / 0.3);
+    --shadow-card: 0 4px 20px -4px hsl(28 95% 55% / 0.2);
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
     @apply bg-background text-foreground;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Optimisation tactile mobile */
+  button, a, [role="button"] {
+    @apply min-h-[44px] touch-manipulation;
+  }
+
+  input, textarea, select {
+    @apply text-base;
+    font-size: 16px !important; /* Évite le zoom sur iOS */
   }
 }
+
