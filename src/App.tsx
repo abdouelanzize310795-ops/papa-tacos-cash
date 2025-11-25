@@ -12,6 +12,7 @@ import Depenses from "./pages/Depenses";
 import AjouterDepense from "./pages/AjouterDepense";
 import Charges from "./pages/Charges";
 import AjouterCharge from "./pages/AjouterCharge";
+import Profil from "./pages/Profil";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
@@ -79,6 +80,14 @@ const App = () => (
               element={
                 <ProtectedRoute>
                   <AjouterCharge />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profil"
+              element={
+                <ProtectedRoute>
+                  <Profil />
                 </ProtectedRoute>
               }
             />

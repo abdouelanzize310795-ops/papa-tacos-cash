@@ -112,14 +112,21 @@ const Dashboard = () => {
                 </p>
               </div>
             </div>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={signOut} 
-              className="text-primary-foreground min-h-touch min-w-[44px] active:scale-95 transition-transform"
-            >
-              <LogOut className="h-6 w-6" />
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button asChild variant="ghost" size="icon" className="text-primary-foreground min-h-touch active:scale-95 transition-transform">
+                <Link to="/profil">
+                  <User className="h-6 w-6" />
+                </Link>
+              </Button>
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={signOut} 
+                className="text-primary-foreground min-h-touch active:scale-95 transition-transform"
+              >
+                <LogOut className="h-6 w-6" />
+              </Button>
+            </div>
           </div>
         </div>
       </header>
