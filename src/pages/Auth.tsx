@@ -66,24 +66,7 @@ const Auth = () => {
 
       setIsLoggingIn(true);
 
-      // Vérifier d'abord si le profil existe avec ce PIN
-      const { data: profile, error: profileError } = await supabase
-        .from("profiles")
-        .select("pin_code")
-        .eq("pin_code", validatedData.pinCode)
-        .single();
-
-      if (profileError || !profile) {
-        toast({
-          title: "Erreur",
-          description: "Code PIN incorrect",
-          variant: "destructive",
-        });
-        setIsLoggingIn(false);
-        return;
-      }
-
-      // Connexion avec email et PIN comme mot de passe
+      // Connexion directe avec email et PIN comme mot de passe
       const { error } = await supabase.auth.signInWithPassword({
         email: validatedData.email,
         password: validatedData.pinCode,
