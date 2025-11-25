@@ -24,7 +24,7 @@ const pinSchema = z.object({
 const profileSchema = z.object({
   nom: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(50),
   prenom: z.string().max(50).optional(),
-  telephone: z.string().min(8, "Numéro invalide").max(15).optional(),
+  telephone: z.string().min(10, "Numéro invalide (format: +269 XXX XX XX)").max(20).optional(),
 });
 
 const Profil = () => {
@@ -267,7 +267,7 @@ const Profil = () => {
                   value={telephone}
                   onChange={(e) => setTelephone(e.target.value)}
                   className="h-14 text-mobile-base"
-                  placeholder="+33 6 12 34 56 78"
+                  placeholder="+269 XXX XX XX"
                 />
               </div>
 
