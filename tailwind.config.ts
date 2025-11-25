@@ -12,6 +12,14 @@ export default {
         "2xl": "1400px",
       },
     },
+    screens: {
+      'xs': '320px',    // Petits téléphones
+      'sm': '640px',    // Téléphones standard
+      'md': '768px',    // Tablettes
+      'lg': '1024px',   // Desktop
+      'xl': '1280px',   // Grand desktop
+      '2xl': '1536px',  // Très grand desktop
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
