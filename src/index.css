@@ -50,10 +50,14 @@ All colors MUST be HSL.
     --sidebar-border: 42 30% 88%;
     --sidebar-ring: 28 95% 55%;
 
-    --gradient-warm: linear-gradient(135deg, hsl(28 95% 55%), hsl(0 85% 55%));
+    --gradient-warm: linear-gradient(135deg, hsl(28 95% 55%) 0%, hsl(0 85% 55%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(42 95% 65%) 0%, hsl(28 95% 55%) 100%);
     --gradient-soft: linear-gradient(180deg, hsl(42 100% 98%), hsl(42 30% 94%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(42 30% 97%) 100%);
     --shadow-warm: 0 10px 40px -10px hsl(28 95% 55% / 0.25);
     --shadow-card: 0 4px 20px -4px hsl(28 95% 55% / 0.15);
+    --shadow-hover: 0 8px 30px -6px hsl(28 95% 55% / 0.3);
+    --shadow-glow: 0 0 40px hsl(28 95% 55% / 0.2);
   }
 
   .dark {
@@ -97,10 +101,14 @@ All colors MUST be HSL.
     --sidebar-border: 20 15% 20%;
     --sidebar-ring: 28 95% 55%;
 
-    --gradient-warm: linear-gradient(135deg, hsl(28 95% 55%), hsl(0 85% 55%));
+    --gradient-warm: linear-gradient(135deg, hsl(28 95% 55%) 0%, hsl(0 85% 55%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(42 95% 65%) 0%, hsl(28 95% 55%) 100%);
     --gradient-soft: linear-gradient(180deg, hsl(20 15% 8%), hsl(20 15% 12%));
+    --gradient-card: linear-gradient(145deg, hsl(20 15% 12%) 0%, hsl(20 15% 15%) 100%);
     --shadow-warm: 0 10px 40px -10px hsl(28 95% 55% / 0.3);
     --shadow-card: 0 4px 20px -4px hsl(28 95% 55% / 0.2);
+    --shadow-hover: 0 8px 30px -6px hsl(28 95% 55% / 0.4);
+    --shadow-glow: 0 0 40px hsl(28 95% 55% / 0.3);
   }
 }
 
@@ -125,6 +133,50 @@ All colors MUST be HSL.
   input, textarea, select {
     @apply text-base;
     font-size: 16px !important; /* Évite le zoom sur iOS */
+  }
+}
+
+@layer utilities {
+  .bg-gradient-warm {
+    background: var(--gradient-warm);
+  }
+  
+  .bg-gradient-accent {
+    background: var(--gradient-accent);
+  }
+  
+  .bg-gradient-card {
+    background: var(--gradient-card);
+  }
+  
+  .shadow-warm {
+    box-shadow: var(--shadow-warm);
+  }
+  
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  
+  .shadow-hover {
+    box-shadow: var(--shadow-hover);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .transition-all-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .card-hover {
+    @apply transition-all-smooth hover:shadow-hover hover:-translate-y-1;
+  }
+  
+  .glass-effect {
+    backdrop-filter: blur(12px);
+    background: hsl(var(--card) / 0.8);
+    border: 1px solid hsl(var(--border) / 0.5);
   }
 }
 

@@ -180,22 +180,29 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-soft flex items-center justify-center p-4">
-      <Card className="w-full max-w-md border-primary/20 shadow-warm">
+    <div className="min-h-screen bg-gradient-soft flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 -left-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 -right-20 w-64 h-64 bg-secondary/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      </div>
+      
+      <Card className="w-full max-w-md border-2 border-primary/30 shadow-glow relative z-10 animate-fade-in backdrop-blur-sm bg-card/95">
         <CardHeader className="text-center space-y-4 pb-6">
-          <div className="mx-auto w-28 h-28">
-            <img src={logo} alt="Papa Tacos Logo" className="w-full h-full object-contain animate-fade-in" />
+          <div className="mx-auto w-28 h-28 relative">
+            <img src={logo} alt="Papa Tacos Logo" className="w-full h-full object-contain animate-fade-in drop-shadow-2xl" />
+            <div className="absolute inset-0 bg-gradient-warm/30 rounded-full blur-2xl -z-10"></div>
           </div>
           <div>
-            <CardTitle className="text-mobile-3xl">Papa Tacos</CardTitle>
-            <CardDescription className="text-mobile-base mt-2">Gestion de Caisse</CardDescription>
+            <CardTitle className="text-mobile-3xl bg-gradient-warm bg-clip-text text-transparent font-extrabold">Papa Tacos</CardTitle>
+            <CardDescription className="text-mobile-base mt-2 font-medium">Gestion de Caisse</CardDescription>
           </div>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="login" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 h-12">
-              <TabsTrigger value="login" className="text-mobile-base">Connexion</TabsTrigger>
-              <TabsTrigger value="signup" className="text-mobile-base">Inscription</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-2 h-12 bg-muted/50">
+              <TabsTrigger value="login" className="text-mobile-base data-[state=active]:bg-gradient-warm data-[state=active]:text-primary-foreground transition-all-smooth">Connexion</TabsTrigger>
+              <TabsTrigger value="signup" className="text-mobile-base data-[state=active]:bg-gradient-warm data-[state=active]:text-primary-foreground transition-all-smooth">Inscription</TabsTrigger>
             </TabsList>
 
             <TabsContent value="login" className="space-y-5 mt-5">
@@ -240,7 +247,7 @@ const Auth = () => {
 
                 <Button 
                   type="submit" 
-                  className="w-full h-14 text-mobile-lg shadow-warm active:scale-[0.98] transition-transform" 
+                  className="w-full h-14 text-mobile-lg shadow-glow bg-gradient-warm hover:shadow-warm card-hover border-0" 
                   disabled={isLoggingIn}
                 >
                   {isLoggingIn ? "Connexion..." : "Se connecter"}
@@ -347,7 +354,7 @@ const Auth = () => {
 
                 <Button 
                   type="submit" 
-                  className="w-full h-14 text-mobile-lg shadow-warm active:scale-[0.98] transition-transform" 
+                  className="w-full h-14 text-mobile-lg shadow-glow bg-gradient-warm hover:shadow-warm card-hover border-0" 
                   disabled={isSigningUp}
                 >
                   {isSigningUp ? "Inscription..." : "Créer mon compte"}

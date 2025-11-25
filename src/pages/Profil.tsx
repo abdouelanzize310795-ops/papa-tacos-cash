@@ -192,18 +192,21 @@ const Profil = () => {
 
   return (
     <div className="min-h-screen bg-gradient-soft">
-      <header className="bg-gradient-warm shadow-warm sticky top-0 z-50">
+      <header className="bg-gradient-warm shadow-warm sticky top-0 z-50 backdrop-blur-sm">
         <div className="px-4 py-4">
           <div className="flex items-center gap-3">
-            <Button asChild variant="ghost" size="icon" className="text-primary-foreground min-h-touch active:scale-95 transition-transform">
+            <Button asChild variant="ghost" size="icon" className="text-primary-foreground min-h-touch hover:bg-white/20 active:scale-95 transition-all-smooth backdrop-blur-sm">
               <Link to="/">
-                <ArrowLeft className="h-6 w-6" />
+                <ArrowLeft className="h-6 w-6 drop-shadow" />
               </Link>
             </Button>
-            <img src={logo} alt="Papa Tacos" className="w-12 h-12 object-contain" />
+            <div className="relative">
+              <img src={logo} alt="Papa Tacos" className="w-12 h-12 object-contain drop-shadow-lg" />
+              <div className="absolute inset-0 bg-white/20 rounded-full blur-xl -z-10"></div>
+            </div>
             <div>
-              <h1 className="text-mobile-xl font-bold text-primary-foreground">Mon Profil</h1>
-              <p className="text-mobile-sm text-primary-foreground/90">
+              <h1 className="text-mobile-xl font-bold text-primary-foreground drop-shadow-md">Mon Profil</h1>
+              <p className="text-mobile-sm text-primary-foreground/95 font-medium">
                 {userRole === "proprietaire" ? "👑 Propriétaire" : "👤 Caissier"}
               </p>
             </div>
@@ -213,8 +216,9 @@ const Profil = () => {
 
       <main className="px-4 py-5 space-y-5 max-w-screen-sm mx-auto pb-safe">
         {/* Informations du profil */}
-        <Card className="border-primary/20 shadow-card">
-          <CardHeader>
+        <Card className="border-2 border-primary/30 shadow-card card-hover animate-fade-in overflow-hidden relative">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-accent/20 rounded-full -translate-y-16 translate-x-16 blur-2xl"></div>
+          <CardHeader className="relative z-10">
             <CardTitle className="text-mobile-xl">Informations personnelles</CardTitle>
             <CardDescription className="text-mobile-base">Modifier vos informations</CardDescription>
           </CardHeader>
@@ -270,7 +274,7 @@ const Profil = () => {
               <Button
                 type="submit"
                 disabled={isLoadingProfile}
-                className="w-full h-14 text-mobile-base shadow-warm active:scale-[0.98] transition-transform"
+                className="w-full h-14 text-mobile-base shadow-glow bg-gradient-warm hover:shadow-warm card-hover border-0"
               >
                 {isLoadingProfile ? "Enregistrement..." : "Enregistrer les modifications"}
               </Button>
@@ -279,8 +283,9 @@ const Profil = () => {
         </Card>
 
         {/* Changement de code PIN */}
-        <Card className="border-primary/20 shadow-card">
-          <CardHeader>
+        <Card className="border-2 border-accent/30 shadow-card card-hover animate-fade-in overflow-hidden relative">
+          <div className="absolute top-0 left-0 w-32 h-32 bg-accent/20 rounded-full -translate-y-16 -translate-x-16 blur-2xl"></div>
+          <CardHeader className="relative z-10">
             <CardTitle className="text-mobile-xl">Modifier le code PIN</CardTitle>
             <CardDescription className="text-mobile-base">Changez votre code de sécurité</CardDescription>
           </CardHeader>
@@ -361,8 +366,8 @@ const Profil = () => {
                 </div>
               </div>
 
-              <div className="bg-accent/20 border border-accent rounded-lg p-4">
-                <p className="text-mobile-sm text-muted-foreground">
+              <div className="bg-accent/10 border-2 border-accent/30 rounded-xl p-4">
+                <p className="text-mobile-sm text-muted-foreground font-medium">
                   ⚠️ Le changement de code PIN vous déconnectera automatiquement. 
                   Vous devrez vous reconnecter avec votre nouveau code.
                 </p>
@@ -372,7 +377,7 @@ const Profil = () => {
                 type="submit"
                 disabled={isLoadingPin}
                 variant="secondary"
-                className="w-full h-14 text-mobile-base shadow-card active:scale-[0.98] transition-transform"
+                className="w-full h-14 text-mobile-base shadow-card hover:shadow-hover card-hover"
               >
                 {isLoadingPin ? "Modification..." : "Modifier le code PIN"}
               </Button>
