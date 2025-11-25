@@ -99,81 +99,81 @@ const Dashboard = () => {
   const resultatMois = totalRecettesMois - (totalDepensesMois + totalChargesMois);
 
   return (
-    <div className="min-h-screen bg-gradient-soft">
-      <header className="bg-gradient-warm shadow-warm">
-        <div className="container mx-auto px-4 py-4">
+    <div className="min-h-screen bg-gradient-soft pb-safe">
+      <header className="bg-gradient-warm shadow-warm sticky top-0 z-50">
+        <div className="px-4 py-5">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <img src={logo} alt="Papa Tacos" className="w-16 h-16 object-contain" />
+            <div className="flex items-center gap-3">
+              <img src={logo} alt="Papa Tacos" className="w-14 h-14 object-contain" />
               <div>
-                <h1 className="text-2xl md:text-3xl font-bold text-primary-foreground">Papa Tacos</h1>
-                <p className="text-sm text-primary-foreground/90">Gestion de Caisse</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="hidden md:block text-right mr-2">
-                <p className="text-sm text-primary-foreground/90">Connecté</p>
-                <p className="text-xs text-primary-foreground font-medium">
+                <h1 className="text-mobile-2xl font-bold text-primary-foreground">Papa Tacos</h1>
+                <p className="text-mobile-sm text-primary-foreground/90">
                   {userRole === "proprietaire" ? "👑 Propriétaire" : "👤 Caissier"}
                 </p>
               </div>
-              <Button variant="ghost" size="icon" onClick={signOut} className="text-primary-foreground">
-                <LogOut className="h-5 w-5" />
-              </Button>
             </div>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={signOut} 
+              className="text-primary-foreground min-h-touch min-w-[44px] active:scale-95 transition-transform"
+            >
+              <LogOut className="h-6 w-6" />
+            </Button>
           </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-6 space-y-6">
-        <div className="flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-foreground">
-            {format(today, "EEEE d MMMM yyyy", { locale: fr })}
+      <main className="px-4 py-5 space-y-5 max-w-screen-sm mx-auto">
+        <div className="text-center">
+          <h2 className="text-mobile-lg font-semibold text-foreground">
+            {format(today, "EEEE d MMMM", { locale: fr })}
           </h2>
+          <p className="text-mobile-sm text-muted-foreground">{format(today, "yyyy", { locale: fr })}</p>
         </div>
 
         {/* Stats du Jour */}
-        <div className="grid gap-4 md:grid-cols-3">
-          <Card className="border-primary/20 shadow-warm">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium">Recettes du Jour</CardTitle>
-              <TrendingUp className="h-5 w-5 text-success" />
+        <div className="grid gap-4">
+          <Card className="border-primary/20 shadow-card active:scale-[0.98] transition-transform">
+            <CardHeader className="flex flex-row items-center justify-between pb-3">
+              <CardTitle className="text-mobile-base font-semibold">Recettes du Jour</CardTitle>
+              <TrendingUp className="h-6 w-6 text-success" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-success">
+              <div className="text-mobile-3xl font-bold text-success">
                 {totalRecettesJour.toLocaleString()} F
               </div>
-              <p className="text-xs text-muted-foreground mt-1">
+              <p className="text-mobile-sm text-muted-foreground mt-1">
                 {recettesJour.length} transaction(s)
               </p>
             </CardContent>
           </Card>
 
-          <Card className="border-primary/20 shadow-warm">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium">Dépenses du Jour</CardTitle>
-              <TrendingDown className="h-5 w-5 text-destructive" />
+          <Card className="border-primary/20 shadow-card active:scale-[0.98] transition-transform">
+            <CardHeader className="flex flex-row items-center justify-between pb-3">
+              <CardTitle className="text-mobile-base font-semibold">Dépenses du Jour</CardTitle>
+              <TrendingDown className="h-6 w-6 text-destructive" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-destructive">
+              <div className="text-mobile-3xl font-bold text-destructive">
                 {totalDepensesJour.toLocaleString()} F
               </div>
-              <p className="text-xs text-muted-foreground mt-1">
+              <p className="text-mobile-sm text-muted-foreground mt-1">
                 {depensesJour.length} dépense(s)
               </p>
             </CardContent>
           </Card>
 
-          <Card className="border-primary/20 shadow-warm bg-gradient-warm">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-primary-foreground">Solde du Jour</CardTitle>
-              <Wallet className="h-5 w-5 text-primary-foreground" />
+          <Card className="border-primary/20 shadow-warm bg-gradient-warm active:scale-[0.98] transition-transform">
+            <CardHeader className="flex flex-row items-center justify-between pb-3">
+              <CardTitle className="text-mobile-base font-semibold text-primary-foreground">Solde du Jour</CardTitle>
+              <Wallet className="h-6 w-6 text-primary-foreground" />
             </CardHeader>
             <CardContent>
-              <div className={`text-3xl font-bold text-primary-foreground`}>
+              <div className="text-mobile-3xl font-bold text-primary-foreground">
                 {soldeJour.toLocaleString()} F
               </div>
-              <p className="text-xs text-primary-foreground/80 mt-1">
+              <p className="text-mobile-sm text-primary-foreground/90 mt-1">
                 Recettes - Dépenses
               </p>
             </CardContent>
@@ -182,36 +182,36 @@ const Dashboard = () => {
 
         {/* Stats du Mois */}
         <div className="space-y-4">
-          <h3 className="text-xl font-bold text-foreground">
-            Résultat du Mois ({format(today, "MMMM yyyy", { locale: fr })})
+          <h3 className="text-mobile-xl font-bold text-foreground text-center">
+            {format(today, "MMMM yyyy", { locale: fr })}
           </h3>
-          <Card className="border-primary/20 shadow-warm">
+          <Card className="border-primary/20 shadow-card">
             <CardHeader>
-              <CardTitle>Bilan Mensuel</CardTitle>
-              <CardDescription>Recettes - (Dépenses + Charges)</CardDescription>
+              <CardTitle className="text-mobile-lg">Bilan Mensuel</CardTitle>
+              <CardDescription className="text-mobile-sm">Recettes - (Dépenses + Charges)</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Recettes totales</span>
-                <span className="text-xl font-bold text-success">
+              <div className="flex justify-between items-center py-2">
+                <span className="text-mobile-base text-muted-foreground">Recettes</span>
+                <span className="text-mobile-xl font-bold text-success">
                   {totalRecettesMois.toLocaleString()} F
                 </span>
               </div>
-              <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Dépenses totales</span>
-                <span className="text-xl font-bold text-destructive">
+              <div className="flex justify-between items-center py-2">
+                <span className="text-mobile-base text-muted-foreground">Dépenses</span>
+                <span className="text-mobile-xl font-bold text-destructive">
                   {totalDepensesMois.toLocaleString()} F
                 </span>
               </div>
-              <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Charges fixes</span>
-                <span className="text-xl font-bold text-destructive">
+              <div className="flex justify-between items-center py-2">
+                <span className="text-mobile-base text-muted-foreground">Charges</span>
+                <span className="text-mobile-xl font-bold text-destructive">
                   {totalChargesMois.toLocaleString()} F
                 </span>
               </div>
-              <div className="border-t pt-4 flex justify-between items-center">
-                <span className="text-lg font-semibold">Résultat</span>
-                <span className={`text-2xl font-bold ${resultatMois >= 0 ? 'text-success' : 'text-destructive'}`}>
+              <div className="border-t-2 pt-4 flex justify-between items-center">
+                <span className="text-mobile-lg font-bold">Résultat</span>
+                <span className={`text-mobile-3xl font-bold ${resultatMois >= 0 ? 'text-success' : 'text-destructive'}`}>
                   {resultatMois.toLocaleString()} F
                 </span>
               </div>
@@ -220,34 +220,34 @@ const Dashboard = () => {
         </div>
 
         {/* Actions Rapides */}
-        <div className="grid gap-4 md:grid-cols-3">
-          <Button asChild size="lg" className="h-24 text-lg">
-            <Link to="/recettes/ajouter">
-              <Receipt className="mr-2 h-6 w-6" />
-              Ajouter Recette
+        <div className="grid gap-4">
+          <Button asChild size="lg" className="h-16 text-mobile-lg shadow-warm active:scale-[0.98] transition-transform">
+            <Link to="/recettes/ajouter" className="flex items-center justify-center gap-3">
+              <Receipt className="h-7 w-7" />
+              <span>Ajouter Recette</span>
             </Link>
           </Button>
-          <Button asChild variant="secondary" size="lg" className="h-24 text-lg">
-            <Link to="/depenses/ajouter">
-              <ShoppingCart className="mr-2 h-6 w-6" />
-              Ajouter Dépense
+          <Button asChild variant="secondary" size="lg" className="h-16 text-mobile-lg shadow-card active:scale-[0.98] transition-transform">
+            <Link to="/depenses/ajouter" className="flex items-center justify-center gap-3">
+              <ShoppingCart className="h-7 w-7" />
+              <span>Ajouter Dépense</span>
             </Link>
           </Button>
-          <Button asChild variant="outline" size="lg" className="h-24 text-lg">
-            <Link to="/charges">
-              <DollarSign className="mr-2 h-6 w-6" />
-              Voir Charges
+          <Button asChild variant="outline" size="lg" className="h-16 text-mobile-lg shadow-card active:scale-[0.98] transition-transform">
+            <Link to="/charges" className="flex items-center justify-center gap-3">
+              <DollarSign className="h-7 w-7" />
+              <span>Voir Charges</span>
             </Link>
           </Button>
         </div>
 
         {/* Navigation */}
-        <div className="grid gap-4 md:grid-cols-2">
-          <Button asChild variant="outline" size="lg">
-            <Link to="/recettes">Voir toutes les recettes</Link>
+        <div className="grid gap-3 pt-2">
+          <Button asChild variant="outline" size="lg" className="h-14 text-mobile-base active:scale-[0.98] transition-transform">
+            <Link to="/recettes">📊 Historique des recettes</Link>
           </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link to="/depenses">Voir toutes les dépenses</Link>
+          <Button asChild variant="outline" size="lg" className="h-14 text-mobile-base active:scale-[0.98] transition-transform">
+            <Link to="/depenses">📋 Historique des dépenses</Link>
           </Button>
         </div>
       </main>
